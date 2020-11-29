@@ -1,6 +1,8 @@
 # Create your views here.
-
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import status, generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.parsers import JSONParser
@@ -11,11 +13,18 @@ from accounts.custom_authentication import SafeJWTAuthentication
 from accounts.models import CustomUser
 from tweets.models import Tweet, Comment
 from tweets.serializers import TweetSerializer, CommentSerializer
+from twitter import settings
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 
-class TweetListCreate(generics.ListCreateAPIView):
+class TweetList(generics.ListAPIView):
     queryset = Tweet.objects.all().order_by("updated_at")
     serializer_class = TweetSerializer
+
+    @method_decorator(cache_page(CACHE_TTL))
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 class TweetItem(APIView):

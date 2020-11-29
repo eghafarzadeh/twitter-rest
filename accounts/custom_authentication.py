@@ -1,5 +1,4 @@
 # Created by elham at 11/29/20
-# accounts.authentication
 
 import jwt
 from django.conf import settings
@@ -16,10 +15,9 @@ class CSRFCheck(CsrfViewMiddleware):
 
 
 class SafeJWTAuthentication(BaseAuthentication):
-    '''
+    """
         custom authentication class for DRF and JWT
-        https://github.com/encode/django-rest-framework/blob/master/rest_framework/authentication.py
-    '''
+    """
 
     def authenticate(self, request):
 

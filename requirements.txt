@@ -3,3 +3,4 @@ djangorestframework
 markdown
 django-filter
 djangorestframework_simplejwt
+django-redis
