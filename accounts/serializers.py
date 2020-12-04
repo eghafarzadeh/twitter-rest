@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     # Because 'tweets' is a reverse relationship on the User model, it will not be included by default when using the
     # ModelSerializer class, so we needed to add an explicit field for it.
-    tweets = serializers.PrimaryKeyRelatedField(many=True, queryset=Tweet.objects.all(), required=False)
+    # tweets = serializers.PrimaryKeyRelatedField(many=True, queryset=Tweet.objects.all(), required=False)
 
     def create(self, validated_data):
         user = CustomUser(username=validated_data['username'],
