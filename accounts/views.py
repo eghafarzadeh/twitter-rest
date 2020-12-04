@@ -91,7 +91,7 @@ def generate_refresh_token(request):
         'iat': datetime.datetime.utcnow(),
         'create_post': request.data.get("create_post"),
         'get_post': request.data.get("get_post"),
-        'update_post': request.data.get("update_post"),
+        'edit_post': request.data.get("edit_post"),
         'delete_post': request.data.get("delete_post")
     }
     access_token = jwt.encode(access_token_payload,

@@ -8,10 +8,7 @@ class AutoDateTimeField(models.DateTimeField):
         return timezone.now()
 
 
-# Create your models here.
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=16)
-    # created_at = models.DateField(default=timezone.now)
-    # updated_at = models.AutoDateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

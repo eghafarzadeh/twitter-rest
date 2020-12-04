@@ -4,6 +4,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
 from accounts.models import CustomUser
+from tweets.models import Tweet
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -14,6 +15,10 @@ class UserSerializer(serializers.ModelSerializer):
     name = serializers.CharField(required=True, max_length=100)
     password = serializers.CharField(min_length=6, max_length=100,
                                      write_only=True)
+
+    # Because 'tweets' is a reverse relationship on the User model, it will not be included by default when using the
+    # ModelSerializer class, so we needed to add an explicit field for it.
+    tweets = serializers.PrimaryKeyRelatedField(many=True, queryset=Tweet.objects.all(), required=False)
 
     def create(self, validated_data):
         user = CustomUser(username=validated_data['username'],
