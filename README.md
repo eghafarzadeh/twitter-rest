@@ -3,11 +3,11 @@
 
 #### نیازمندی ها
 
-Django~=3.1.3
-djangorestframework
-markdown
-django-filter
-djangorestframework_simplejwt
+* Django~=3.1.3
+* djangorestframework
+* markdown
+* django-filter
+* djangorestframework_simplejwt
 
 ###### شرح پروژه
 در حال حاضر پروژه دارای امکانات زیر است:
