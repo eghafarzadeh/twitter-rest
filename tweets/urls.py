@@ -5,8 +5,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.TweetList.as_view(), name='tweet-list'),
-    url(r'^create$', views.TweetItem.as_view(), name='tweet-item'),
-    url(r'^userId/(?P<user_id>[0-9]+)$', views.TweetUser.as_view(), name='tweet-user'),
-    url(r'^(?P<tweet_id>[0-9]+)$', views.TweetDetail.as_view(), name='tweet-detail'),
-    url(r'^(?P<tweet_id>[0-9]+)/comment$', views.TweetComment.as_view(), name='tweet-comment'),
+    url(r'^(?P<pk>[0-9]+)$', views.TweetDetail.as_view(), name='tweet-detail'),
+    url(r'^userId/(?P<user_id>[0-9]+)$', views.UserTweets.as_view(), name='user-tweet'),
+    url(r'^(?P<tweet_id>[0-9]+)/comment$', views.CommentList.as_view(), name='tweet-comment2'),
 ]

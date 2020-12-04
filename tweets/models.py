@@ -6,13 +6,16 @@ from accounts.models import CustomUser
 
 class Tweet(models.Model):
     text = models.CharField(max_length=256)
-    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    owner = models.ForeignKey(CustomUser, related_name='tweets', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         """Return a string representation of the model."""
         return f"{self.text[:50]}..."
+
+    class Meta:
+        ordering = ['created_at']
 
 
 class Comment(models.Model):
@@ -25,3 +28,6 @@ class Comment(models.Model):
     def __str__(self):
         """Return a string representation of the model."""
         return f"{self.text[:50]}..."
+
+    class Meta:
+        ordering = ['created_at']
