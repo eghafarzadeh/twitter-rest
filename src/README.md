@@ -3,11 +3,15 @@
 
 #### نیازمندی ها
 
-* Django~=3.1.3
+* Django
 * djangorestframework
 * markdown
 * django-filter
 * djangorestframework_simplejwt
+* django-redis
+* PyJWT
+* psycopg2
+* gunicorn
 
 ###### شرح پروژه
 در حال حاضر پروژه دارای امکانات زیر است:
@@ -21,3 +25,11 @@
 * دریافت لیست کامنت های یک توئیت
 * دریافت لیست همه توئیت ها براساس زمان آخرین تغییر
 * امکان دریافت توکن توسط کاربر جهت دسترسی دادن به افراد و برنامه های ثالث
+
+#### نحوه اجرا 
+برای اجرای پروژه دستورهای زیر را در مسیر root پروژه اجرا کنید.
+docker-compose build
+docker-compose run web python manage.py makemigrations tweets
+docker-compose run web python manage.py makemigrations accounts
+docker-compose run web python manage.py migrate
+docker-compose up
